@@ -5,6 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+/**
+ * Provides remarks for user.
+ */
 public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
