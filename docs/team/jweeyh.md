@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Johnathan Wee's Project Portfolio test
+title: Johnathan Wee's Project Portfolio 
 ---
 
 ### Project: SudoHR
