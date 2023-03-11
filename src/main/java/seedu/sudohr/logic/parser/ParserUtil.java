@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.commons.util.StringUtil;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
+import seedu.sudohr.model.events.Title;
 import seedu.sudohr.model.person.Address;
 import seedu.sudohr.model.person.Email;
 import seedu.sudohr.model.person.Name;
@@ -120,5 +121,31 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+
+    public static Title parseEventTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        //if (!Title.isValidTitleName(trimmedTitle)) {
+        //    throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+        //}
+        return new Title(trimmedTitle);
+    }
+
+    public static Index parseEventIndex(String eventIndex) throws ParseException {
+        String trimmedIndex = eventIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    public static Index parseEmployeeIndex(String employeeIndex) throws ParseException {
+    String trimmedIndex = employeeIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 }

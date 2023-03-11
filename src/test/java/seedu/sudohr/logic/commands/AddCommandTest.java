@@ -20,6 +20,7 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.ReadOnlyUserPrefs;
 import seedu.sudohr.model.SudoHr;
+import seedu.sudohr.model.events.Event;
 import seedu.sudohr.model.person.Person;
 import seedu.sudohr.testutil.PersonBuilder;
 
@@ -146,6 +147,45 @@ public class AddCommandTest {
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEvent(Event event) {
+            throw new UnsupportedOperationException("Unimplemented method 'addEvent'");
+        }
+
+        @Override
+        public boolean hasEvent(Event event) {
+            throw new UnsupportedOperationException("Unimplemented method 'hasEvent'");
+        }
+
+        @Override
+        public ObservableList<Event> getEventList() {
+            throw new UnsupportedOperationException("Unimplemented method 'hasEvent'");
+        }
+
+        @Override
+        public boolean hasEmployeeInEvent(Event eventToAdd, Person personToAdd) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'hasEmployeeInEvent'");
+        }
+
+        @Override
+        public void addEmployeeToEvent(Event eventToAdd, Person personToAdd) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'addEmployeeToEvent'");
+        }
+
+        @Override
+        public ObservableList<Event> getFilteredEventList() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getFilteredEventList'");
+        }
+
+        @Override
+        public void deleteEvent(Event eventToDelete) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'deleteEvent'");
         }
     }
 

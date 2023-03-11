@@ -12,4 +12,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
+
+    /* Prefix definitions for event*/
+    public static final Prefix PREFIX_EVENT_TITLE = new Prefix("d/");
+    public static final Prefix PREFIX_EVENT_INDEX = new Prefix("g/");
+    public static final Prefix PREFIX_EMPLOYEE_INDEX = new Prefix("p/");
 }

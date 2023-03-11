@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.sudohr.model.events.Event;
 import seedu.sudohr.model.person.Person;
 import seedu.sudohr.model.person.exceptions.DuplicatePersonException;
 import seedu.sudohr.testutil.PersonBuilder;
@@ -88,6 +89,7 @@ public class SudoHrTest {
      */
     private static class SudoHrStub implements ReadOnlySudoHr {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Event> events = FXCollections.observableArrayList();
 
         SudoHrStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -96,6 +98,11 @@ public class SudoHrTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Event> getEventsList() {
+            return events;
         }
     }
 

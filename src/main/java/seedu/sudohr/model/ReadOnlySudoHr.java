@@ -1,6 +1,7 @@
 package seedu.sudohr.model;
 
 import javafx.collections.ObservableList;
+import seedu.sudohr.model.events.Event;
 import seedu.sudohr.model.person.Person;
 
 /**
@@ -13,5 +14,12 @@ public interface ReadOnlySudoHr {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getPersonList();
+
+
+    /**
+     * Returns an unmodifiable view of the events list.
+     * This list will not contain any duplicate persons.
+     */
+    ObservableList<Event> getEventsList();
 
 }

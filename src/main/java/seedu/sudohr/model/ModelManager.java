@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.commons.core.LogsCenter;
+import seedu.sudohr.model.events.Event;
 import seedu.sudohr.model.person.Person;
 
 /**
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final SudoHr sudoHr;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Event> filteredEvents;
 
     /**
      * Initializes a ModelManager with the given sudoHr and userPrefs.
@@ -34,13 +37,15 @@ public class ModelManager implements Model {
         this.sudoHr = new SudoHr(sudoHr);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.sudoHr.getPersonList());
+        filteredEvents = new FilteredList<>(this.sudoHr.getEventsList());
     }
 
     public ModelManager() {
         this(new SudoHr(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs
+    // ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -75,7 +80,8 @@ public class ModelManager implements Model {
         userPrefs.setSudoHrFilePath(sudoHrFilePath);
     }
 
-    //=========== SudoHr ================================================================================
+    // =========== SudoHr
+    // ================================================================================
 
     @Override
     public void setSudoHr(ReadOnlySudoHr sudoHr) {
@@ -111,10 +117,64 @@ public class ModelManager implements Model {
         sudoHr.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Event Commands
+    // =============================================================
+
+    @Override
+    public void addEvent(Event event) {
+        requireNonNull(event);
+        sudoHr.addEvent(event);
+
+    }
+
+    @Override
+    public void deleteEvent(Event event) {
+        requireNonNull(event);
+        sudoHr.deleteEvent(event);
+    }
+    @Override
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return sudoHr.hasEvent(event);
+    }
+
+    @Override
+    public ObservableList<Event> getEventList() {
+        return filteredEvents;
+    }
+
+    @Override
+    public boolean hasEmployeeInEvent(Event event, Person person) {
+        requireAllNonNull(event, person);
+        return sudoHr.hasEmployeeInEvent(event, person);
+    }
+
+    @Override
+    public void addEmployeeToEvent(Event eventToAdd, Person personToAdd) {
+        requireAllNonNull(eventToAdd, personToAdd);
+
+        sudoHr.addEmployeeToEvent(eventToAdd,personToAdd);
+    }
+
+
+
+    // =========== Filtered Event List Accessors
+    // =============================================================
+
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
+
+
+
+    // =========== Filtered Person List Accessors
+    // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
      * {@code versionedSudoHr}
      */
     @Override
@@ -146,5 +206,5 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
+    
 }

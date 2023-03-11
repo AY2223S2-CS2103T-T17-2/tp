@@ -1,10 +1,13 @@
 package seedu.sudohr.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.sudohr.model.events.Event;
+import seedu.sudohr.model.events.UniqueEventList;
 import seedu.sudohr.model.person.Person;
 import seedu.sudohr.model.person.UniquePersonList;
 
@@ -16,6 +19,8 @@ public class SudoHr implements ReadOnlySudoHr {
 
     private final UniquePersonList persons;
 
+    private final UniqueEventList events;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -23,7 +28,8 @@ public class SudoHr implements ReadOnlySudoHr {
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
-    {
+    { 
+        events = new UniqueEventList();
         persons = new UniquePersonList();
     }
 
@@ -93,6 +99,38 @@ public class SudoHr implements ReadOnlySudoHr {
         persons.remove(key);
     }
 
+    //// event methods
+
+    public void addEvent(Event event) {
+        events.addEvent(event);    
+    }
+
+    public void deleteEvent(Event event) {
+        events.remove(event);
+    }
+
+
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return events.contains(event);
+    }
+
+    public boolean hasEmployeeInEvent(Event event, Person person) {
+        requireAllNonNull(event,person);
+        return event.hasPerson(person);
+    }
+
+    public void addEmployeeToEvent(Event event, Person person) {
+        requireAllNonNull(event, person);
+        event.addPerson(person);
+    }
+
+    @Override
+    public ObservableList<Event> getEventsList() {
+        return events.asUnmodifiableObservableList();
+    } 
+
+    
     //// util methods
 
     @Override
@@ -117,4 +155,6 @@ public class SudoHr implements ReadOnlySudoHr {
     public int hashCode() {
         return persons.hashCode();
     }
+
+    
 }

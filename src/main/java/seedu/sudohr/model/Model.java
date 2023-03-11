@@ -1,10 +1,12 @@
 package seedu.sudohr.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.sudohr.commons.core.GuiSettings;
+import seedu.sudohr.model.events.Event;
 import seedu.sudohr.model.person.Person;
 
 /**
@@ -53,7 +55,8 @@ public interface Model {
     ReadOnlySudoHr getSudoHr();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the sudohr book.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the sudohr book.
      */
     boolean hasPerson(Person person);
 
@@ -72,7 +75,8 @@ public interface Model {
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the sudohr book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the sudohr book.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the sudohr book.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -80,8 +84,27 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered person list to filter by the given
+     * {@code predicate}.
+     * 
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    // event methods
+
+    void addEvent(Event event);
+
+    boolean hasEvent(Event event);
+
+    ObservableList<Event> getEventList();
+
+    boolean hasEmployeeInEvent(Event eventToAdd, Person personToAdd);
+
+    void addEmployeeToEvent(Event eventToAdd, Person personToAdd);
+
+    ObservableList<Event> getFilteredEventList();
+
+    void deleteEvent(Event eventToDelete);
+
 }
