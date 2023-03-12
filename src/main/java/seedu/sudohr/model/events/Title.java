@@ -6,6 +6,10 @@ public class Title {
 
     public final String value;
 
+    public static final String MESSAGE_CONSTRAINTS = "Titles should only contain alphanumeric characters and spaces, and it should not be blank";
+
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
     /**
      * Constructs a {@code Title}.
      *
@@ -14,6 +18,13 @@ public class Title {
     public Title(String title) {
         requireNonNull(title);
         value = title;
+    }
+
+    /**
+     * Returns true if a given string is a valid name.
+     */
+    public static boolean isValidName(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
 

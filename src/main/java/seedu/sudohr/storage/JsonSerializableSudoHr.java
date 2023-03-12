@@ -12,6 +12,7 @@ import seedu.sudohr.commons.exceptions.IllegalValueException;
 import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
+import seedu.sudohr.model.events.Event;
 import seedu.sudohr.model.person.Person;
 
 /**
@@ -22,18 +23,22 @@ class JsonSerializableSudoHr {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_DEPARTMENTS = "Departments list contains duplicate department(s).";
+    public static final String MESSAGE_DUPLICATE_EVENTS = "Events list contains duplicate events(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedDepartment> departments = new ArrayList<>();
+    private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableSudoHr} with the given persons.
      */
     @JsonCreator
     public JsonSerializableSudoHr(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                  @JsonProperty("departments") List<JsonAdaptedDepartment> departments) {
+                                  @JsonProperty("departments") List<JsonAdaptedDepartment> departments,
+                                  @JsonProperty("events") List<JsonAdaptedEvent> events) {
         this.persons.addAll(persons);
         this.departments.addAll(departments);
+        this.events.addAll(events);
     }
 
     /**
@@ -44,6 +49,8 @@ class JsonSerializableSudoHr {
     public JsonSerializableSudoHr(ReadOnlySudoHr source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         departments.addAll(source.getDepartmentList().stream().map(JsonAdaptedDepartment::new)
+                .collect(Collectors.toList()));
+        events.addAll(source.getEventsList().stream().map(JsonAdaptedEvent::new)
                 .collect(Collectors.toList()));
     }
 
@@ -69,6 +76,14 @@ class JsonSerializableSudoHr {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_DEPARTMENTS);
             }
             sudoHr.addDepartment(department);
+        }
+
+        for (JsonAdaptedEvent jsonAdaptedEvent : events) {
+            Event event = jsonAdaptedEvent.toModelType();
+            if (sudoHr.hasEvent(event)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EVENTS);
+            }
+            sudoHr.addEvent(event);
         }
 
         return sudoHr;
