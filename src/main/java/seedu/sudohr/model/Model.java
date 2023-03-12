@@ -93,6 +93,8 @@ public interface Model {
 
     // event methods
 
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENT = unused -> true;
+
     void addEvent(Event event);
 
     boolean hasEvent(Event event);
@@ -106,5 +108,11 @@ public interface Model {
     ObservableList<Event> getFilteredEventList();
 
     void deleteEvent(Event eventToDelete);
+
+    void deleteEmployeeFromEvent(Event eventToDelete, Person personToDelete);
+
+    void updateFilteredEventList(Predicate<Event> predicateShowAllEvent);
+
+    void setEvent(Event eventToEdit, Event editedEvent);
 
 }

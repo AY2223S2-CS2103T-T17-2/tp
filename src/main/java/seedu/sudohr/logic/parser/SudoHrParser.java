@@ -85,7 +85,7 @@ public class SudoHrParser {
                 return new DeleteEventCommandParser().parse(arguments);
 
             case DeleteEmployeeFromEventCommand.COMMAND_WORD:
-                return new DeleteEmployeeFromEventCommand();
+                return new DeleteEmployeeFromEventCommandParser().parse(arguments);
 
             case ListEventCommand.COMMAND_WORD:
                 return new ListEventCommand();
@@ -94,7 +94,7 @@ public class SudoHrParser {
                 return new ListEmployeeInEventCommandParser().parse(arguments);
 
             case UpdateEventCommand.COMMAND_WORD:
-                return new UpdateEventCommand();
+                return new UpdateEventCommandParser().parse(arguments);
 
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

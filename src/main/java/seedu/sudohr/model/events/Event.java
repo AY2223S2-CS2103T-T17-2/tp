@@ -19,6 +19,11 @@ public class Event {
         this.attendees = new HashSet<Person>();
     }
 
+    public Event(Title title, Set<Person> attendees) {
+        this.title = title;
+        this.attendees = attendees;
+    }
+
     public Title getTitle() {
         return title;
     }
@@ -43,6 +48,11 @@ public class Event {
     public void addPerson(Person person) {
         requireNonNull(person);
         this.attendees.add(person);
+    }
+
+    public void deletePerson(Person person) {
+        requireNonNull(person);
+        this.attendees.remove(person);
     }
 
     @Override

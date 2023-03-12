@@ -29,7 +29,7 @@ public class AddEmployeeToEventCommand extends Command {
 
     public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index is invalid";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a employee to command in the sudohr book. ";;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a employee to event in the sudohr book. ";
 
     public AddEmployeeToEventCommand(Index personIndex, Index eventIndex) {
         requireNonNull(personIndex);

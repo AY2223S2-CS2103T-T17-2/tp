@@ -9,6 +9,7 @@ import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.sudohr.model.person.exceptions.DuplicatePersonException;
+import seedu.sudohr.model.events.exceptions.DuplicateEventException;
 import seedu.sudohr.model.events.exceptions.EventNotFoundException;
 
 public class UniqueEventList implements Iterable<Event> {
@@ -47,11 +48,11 @@ public class UniqueEventList implements Iterable<Event> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            // throw new PersonNotFoundException();
+            throw new EventNotFoundException();
         }
 
         if (!target.isSameEvent(editedEvent) && contains(editedEvent)) {
-            // throw new DuplicatePersonException();
+            throw new DuplicateEventException();
         }
 
         internalList.set(index, editedEvent);

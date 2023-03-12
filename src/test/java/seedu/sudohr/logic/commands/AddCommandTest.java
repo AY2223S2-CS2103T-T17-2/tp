@@ -187,6 +187,24 @@ public class AddCommandTest {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'deleteEvent'");
         }
+
+        @Override
+        public void deleteEmployeeFromEvent(Event eventToDelete, Person personToDelete) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'deleteEmployeeFromEvent'");
+        }
+
+        @Override
+        public void updateFilteredEventList(Predicate<Event> predicateShowAllEvent) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'updateFilteredEventList'");
+        }
+
+        @Override
+        public void setEvent(Event eventToEdit, Event editedEvent) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setEvent'");
+        }
     }
 
     /**

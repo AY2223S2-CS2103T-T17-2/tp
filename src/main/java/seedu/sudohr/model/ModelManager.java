@@ -132,6 +132,7 @@ public class ModelManager implements Model {
         requireNonNull(event);
         sudoHr.deleteEvent(event);
     }
+
     @Override
     public boolean hasEvent(Event event) {
         requireNonNull(event);
@@ -153,21 +154,36 @@ public class ModelManager implements Model {
     public void addEmployeeToEvent(Event eventToAdd, Person personToAdd) {
         requireAllNonNull(eventToAdd, personToAdd);
 
-        sudoHr.addEmployeeToEvent(eventToAdd,personToAdd);
+        sudoHr.addEmployeeToEvent(eventToAdd, personToAdd);
     }
 
+    @Override
+    public void deleteEmployeeFromEvent(Event eventToDelete, Person personToDelete) {
+        requireAllNonNull(eventToDelete, personToDelete);
 
+        sudoHr.deleteEmployeeFromEvent(eventToDelete, personToDelete);
+    }
+
+    @Override
+    public void setEvent(Event eventToEdit, Event editedEvent) {
+        // TODO Auto-generated method stub
+        requireAllNonNull(eventToEdit, editedEvent);
+        sudoHr.setEvent(eventToEdit, editedEvent);
+    }
 
     // =========== Filtered Event List Accessors
     // =============================================================
-
 
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return filteredEvents;
     }
 
-
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
+    }
 
     // =========== Filtered Person List Accessors
     // =============================================================
@@ -206,5 +222,6 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
+
     
 }
