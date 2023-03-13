@@ -1,4 +1,4 @@
-package seedu.sudohr.logic.commands.eventCommands;
+package seedu.sudohr.logic.commands.eventcommands;
 
 import static java.util.Objects.requireNonNull;
 
@@ -14,6 +14,9 @@ import seedu.sudohr.model.events.Event;
 import seedu.sudohr.model.events.EventContainsEmployeePredicate;
 import seedu.sudohr.model.person.Person;
 
+/**
+ * Deletes a person from a specific event in sudohr book.
+ */
 public class DeleteEmployeeFromEventCommand extends Command {
     public static final String COMMAND_WORD = "deleteEmployeeEvent";
 
@@ -30,6 +33,10 @@ public class DeleteEmployeeFromEventCommand extends Command {
     private final Index eventToDeleteIndex;
     private final Index personToDeleteIndex;
 
+    /**
+     * Creates an DeleteEmployeeFromEventCommand to delete the person at specified
+     * {@code personIndex} from the event at the specified {@code eventIndex}
+     */
     public DeleteEmployeeFromEventCommand(Index personIndex, Index eventIndex) {
         requireNonNull(personIndex);
         requireNonNull(eventIndex);

@@ -3,19 +3,19 @@ package seedu.sudohr.logic.parser;
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.sudohr.commons.core.index.Index;
-import seedu.sudohr.logic.commands.eventCommands.DeleteEventCommand;
+import seedu.sudohr.logic.commands.eventcommands.DeleteEventCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new DeleteEventCommand object
  */
 public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * DeleteCommand
-     * and returns a DeleteCommand object for execution.
-     * 
+     * DeleteEventCommand
+     * and returns a DeleteEventCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteEventCommand parse(String args) throws ParseException {

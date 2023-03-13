@@ -1,4 +1,4 @@
-package seedu.sudohr.logic.commands.eventCommands;
+package seedu.sudohr.logic.commands.eventcommands;
 
 import javafx.collections.ObservableList;
 import seedu.sudohr.logic.commands.Command;
@@ -6,6 +6,9 @@ import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.events.Event;
 
+/**
+ * Lists all events in the sudohr book to the user.
+ */
 public class ListEventCommand extends Command {
     public static final String COMMAND_WORD = "listEvent";
 
@@ -21,5 +24,4 @@ public class ListEventCommand extends Command {
 
         return new CommandResult(builder.toString(), false, false);
     }
-
 }

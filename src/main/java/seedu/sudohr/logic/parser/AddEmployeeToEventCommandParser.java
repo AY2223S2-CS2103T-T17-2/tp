@@ -1,20 +1,25 @@
 package seedu.sudohr.logic.parser;
 
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EVENT_INDEX;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE_INDEX;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EVENT_INDEX;
 
 import java.util.stream.Stream;
 
 import seedu.sudohr.commons.core.index.Index;
-import seedu.sudohr.logic.commands.eventCommands.AddEmployeeToEventCommand;
+import seedu.sudohr.logic.commands.eventcommands.AddEmployeeToEventCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddEmployeeToEventCommand object
  */
 public class AddEmployeeToEventCommandParser implements Parser<AddEmployeeToEventCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddEmployeeToEventCommand
+     * and returns an AddEmployeeToEventCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public AddEmployeeToEventCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT_INDEX, PREFIX_EMPLOYEE_INDEX);
 

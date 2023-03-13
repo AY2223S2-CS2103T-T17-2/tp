@@ -30,7 +30,6 @@ public class SudoHr implements ReadOnlySudoHr {
      * sometimes used to avoid duplication
      * between constructors. See
      * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
      * Note that non-static init blocks are not recommended to use. There are other
      * ways to avoid duplication
      * among constructors.
@@ -132,6 +131,7 @@ public class SudoHr implements ReadOnlySudoHr {
 
     /**
      * Returns the department with the given name.
+     *
      * @param name The department name to find.
      * @return The corresponding department.
      */
@@ -150,7 +150,8 @@ public class SudoHr implements ReadOnlySudoHr {
     /**
      * Replaces the given department {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in
+     * the address book.
      */
     public void setDepartment(Department target, Department editedDepartment) {
         requireNonNull(editedDepartment);
@@ -167,6 +168,7 @@ public class SudoHr implements ReadOnlySudoHr {
 
     /**
      * Adds a given employee from a given department
+     *
      * @param p The employee to add
      * @param d The department to add the employee to
      */
@@ -179,6 +181,7 @@ public class SudoHr implements ReadOnlySudoHr {
 
     /**
      * Removes a given employee from a given department
+     *
      * @param p The employee to remove
      * @param d The department to remove the employee fro
      */
@@ -191,47 +194,81 @@ public class SudoHr implements ReadOnlySudoHr {
 
     //// event-level operations
 
-    //// leave-level operations
-
-    //// event methods
-
+    /**
+     * Adds a event to the address book.
+     * The event must not already exist in the address book.
+     */
     public void addEvent(Event event) {
         events.addEvent(event);
     }
 
+    /**
+     * Removes {@code event} from this {@code SudoHr}.
+     * {@code event} must exist in the sudohr book.
+     */
     public void deleteEvent(Event event) {
         events.remove(event);
     }
 
+    /**
+     * Replaces the given event {@code eventToEdit} in the list with
+     * {@code editedEvent}.
+     * {@code eventToEdit} must exist in the sudohr book.
+     * The person identity of {@code editedEvent} must not be the same as another
+     * existing person in the sudohr book.
+     */
     public void setEvent(Event eventToEdit, Event editedEvent) {
         requireNonNull(editedEvent);
         events.setEvent(eventToEdit, editedEvent);
     }
 
+    /**
+     * Returns true if a person with the same identity as {@code event} exists in
+     * the sudohr book.
+     */
     public boolean hasEvent(Event event) {
         requireNonNull(event);
         return events.contains(event);
     }
 
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the specified event
+     * {@code event}
+     * the sudohr book.
+     */
     public boolean hasEmployeeInEvent(Event event, Person person) {
         requireAllNonNull(event, person);
         return event.hasPerson(person);
     }
 
+    /**
+     * Adds a person {@code person} to a specified event{@code event}
+     * in the sudohr book.
+     */
     public void addEmployeeToEvent(Event event, Person person) {
         requireAllNonNull(event, person);
         event.addPerson(person);
     }
 
+    /**
+     * Deletes a person {@code person} from a specified event{@code event}
+     * in the sudohr book.
+     */
     public void deleteEmployeeFromEvent(Event event, Person person) {
         requireAllNonNull(event, person);
         event.deletePerson(person);
     }
 
+    /**
+     * return the list of all events in sudohr
+     */
     @Override
     public ObservableList<Event> getEventsList() {
         return events.asUnmodifiableObservableList();
     }
+
+    //// leave-level operations
+
     //// util methods
 
     @Override

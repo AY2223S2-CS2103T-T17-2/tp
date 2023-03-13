@@ -1,4 +1,4 @@
-package seedu.sudohr.logic.commands.eventCommands;
+package seedu.sudohr.logic.commands.eventcommands;
 
 import static java.util.Objects.requireNonNull;
 
@@ -12,6 +12,9 @@ import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.events.Event;
 
+/**
+ * Deletes a event identified using it's displayed index from the sudohr book.
+ */
 public class DeleteEventCommand extends Command {
     public static final String COMMAND_WORD = "deleteEvent";
 
@@ -24,12 +27,16 @@ public class DeleteEventCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an DeleteEventCommand to delete employee at the specified
+     * {@code targetIndex}
+     */
     public DeleteEventCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException{
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Event> lastShownList = model.getFilteredEventList();
 
@@ -47,5 +54,5 @@ public class DeleteEventCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DeleteEventCommand // instanceof handles nulls
                         && targetIndex.equals(((DeleteEventCommand) other).targetIndex)); // state check
-    }    
+    }
 }

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -148,7 +147,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Event> getEventList() {
-        return filteredEvents;
+        return this.sudoHr.getEventsList();
     }
 
     @Override
@@ -173,7 +172,6 @@ public class ModelManager implements Model {
 
     @Override
     public void setEvent(Event eventToEdit, Event editedEvent) {
-        // TODO Auto-generated method stub
         requireAllNonNull(eventToEdit, editedEvent);
         sudoHr.setEvent(eventToEdit, editedEvent);
     }
@@ -284,6 +282,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
-    
 }

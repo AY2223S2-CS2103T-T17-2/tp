@@ -17,13 +17,13 @@ import seedu.sudohr.logic.commands.ExitCommand;
 import seedu.sudohr.logic.commands.FindCommand;
 import seedu.sudohr.logic.commands.HelpCommand;
 import seedu.sudohr.logic.commands.ListCommand;
-import seedu.sudohr.logic.commands.eventCommands.AddEmployeeToEventCommand;
-import seedu.sudohr.logic.commands.eventCommands.AddEventCommand;
-import seedu.sudohr.logic.commands.eventCommands.DeleteEmployeeFromEventCommand;
-import seedu.sudohr.logic.commands.eventCommands.DeleteEventCommand;
-import seedu.sudohr.logic.commands.eventCommands.ListEmployeeInEventCommand;
-import seedu.sudohr.logic.commands.eventCommands.ListEventCommand;
-import seedu.sudohr.logic.commands.eventCommands.UpdateEventCommand;
+import seedu.sudohr.logic.commands.eventcommands.AddEmployeeToEventCommand;
+import seedu.sudohr.logic.commands.eventcommands.AddEventCommand;
+import seedu.sudohr.logic.commands.eventcommands.DeleteEmployeeFromEventCommand;
+import seedu.sudohr.logic.commands.eventcommands.DeleteEventCommand;
+import seedu.sudohr.logic.commands.eventcommands.ListEmployeeInEventCommand;
+import seedu.sudohr.logic.commands.eventcommands.ListEventCommand;
+import seedu.sudohr.logic.commands.eventcommands.UpdateEventCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 
 /**
@@ -53,59 +53,59 @@ public class SudoHrParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-            case AddCommand.COMMAND_WORD:
-                return new AddCommandParser().parse(arguments);
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
 
-            case EditCommand.COMMAND_WORD:
-                return new EditCommandParser().parse(arguments);
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
 
-            case DeleteCommand.COMMAND_WORD:
-                return new DeleteCommandParser().parse(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
 
-            case AddDepartmentCommand.COMMAND_WORD:
+        case AddDepartmentCommand.COMMAND_WORD:
             return new AddDepartmentCommandParser().parse(arguments);
 
         case EditDepartmentCommand.COMMAND_WORD:
             return new EditDepartmentCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
+            return new ClearCommand();
 
-            case FindCommand.COMMAND_WORD:
-                return new FindCommandParser().parse(arguments);
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            case AddEventCommand.COMMAND_WORD:
-                return new AddEventCommandParser().parse(arguments);
+        case AddEventCommand.COMMAND_WORD:
+            return new AddEventCommandParser().parse(arguments);
 
-            case AddEmployeeToEventCommand.COMMAND_WORD:
-                return new AddEmployeeToEventCommandParser().parse(arguments);
+        case AddEmployeeToEventCommand.COMMAND_WORD:
+            return new AddEmployeeToEventCommandParser().parse(arguments);
 
-            case DeleteEventCommand.COMMAND_WORD:
-                return new DeleteEventCommandParser().parse(arguments);
+        case DeleteEventCommand.COMMAND_WORD:
+            return new DeleteEventCommandParser().parse(arguments);
 
-            case DeleteEmployeeFromEventCommand.COMMAND_WORD:
-                return new DeleteEmployeeFromEventCommandParser().parse(arguments);
+        case DeleteEmployeeFromEventCommand.COMMAND_WORD:
+            return new DeleteEmployeeFromEventCommandParser().parse(arguments);
 
-            case ListEventCommand.COMMAND_WORD:
-                return new ListEventCommand();
+        case ListEventCommand.COMMAND_WORD:
+            return new ListEventCommand();
 
-            case ListEmployeeInEventCommand.COMMAND_WORD:
-                return new ListEmployeeInEventCommandParser().parse(arguments);
+        case ListEmployeeInEventCommand.COMMAND_WORD:
+            return new ListEmployeeInEventCommandParser().parse(arguments);
 
-            case UpdateEventCommand.COMMAND_WORD:
-                return new UpdateEventCommandParser().parse(arguments);
+        case UpdateEventCommand.COMMAND_WORD:
+            return new UpdateEventCommandParser().parse(arguments);
 
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 

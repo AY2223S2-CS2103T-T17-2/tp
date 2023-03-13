@@ -25,6 +25,6 @@ public class EventContainsEmployeePredicate implements Predicate<Person> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EventContainsEmployeePredicate // instanceof handles nulls
-                        && personsInEvent.equals(((EventContainsEmployeePredicate) other).personsInEvent)); // state check
+                        && personsInEvent.equals(((EventContainsEmployeePredicate) other).personsInEvent));
     }
 }

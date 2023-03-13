@@ -14,6 +14,9 @@ import seedu.sudohr.model.events.Event;
 import seedu.sudohr.model.events.Title;
 import seedu.sudohr.model.person.Person;
 
+/**
+ * Jackson-friendly version of {@link Event}.
+ */
 public class JsonAdaptedEvent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Title's %s field is missing!";
@@ -26,7 +29,7 @@ public class JsonAdaptedEvent {
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("title") String title,
-                                 @JsonProperty("employees") List<JsonAdaptedPerson> employees) {
+            @JsonProperty("employees") List<JsonAdaptedPerson> employees) {
         this.title = title;
         if (employees != null) {
             this.employees.addAll(employees);
@@ -48,7 +51,7 @@ public class JsonAdaptedEvent {
      * {@code Person} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in
-     *                               the adapted person.
+     *         the adapted person.
      */
     public Event toModelType() throws IllegalValueException {
         final List<Person> eventEmployees = new ArrayList<>();

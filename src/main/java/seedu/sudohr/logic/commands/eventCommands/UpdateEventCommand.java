@@ -1,8 +1,8 @@
-package seedu.sudohr.logic.commands.eventCommands;
+package seedu.sudohr.logic.commands.eventcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.sudohr.model.Model.PREDICATE_SHOW_ALL_EVENT;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EVENT_TITLE;
+import static seedu.sudohr.model.Model.PREDICATE_SHOW_ALL_EVENT;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +19,9 @@ import seedu.sudohr.model.events.Event;
 import seedu.sudohr.model.events.Title;
 import seedu.sudohr.model.person.Person;
 
+/**
+ * Updates the details of an existing event inside SudoHR.
+ */
 public class UpdateEventCommand extends Command {
 
     public static final String COMMAND_WORD = "updateEvent";
@@ -26,7 +29,6 @@ public class UpdateEventCommand extends Command {
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the sudohr book.";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the event identified "
             + "by the index number used in the displayed event list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -39,9 +41,12 @@ public class UpdateEventCommand extends Command {
     private final EditEventDescriptor editEventDescriptor;
 
     /**
+     * Creates an UpdateEventCommand to edit the event at the specified {@code index}
+     *
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
+
     public UpdateEventCommand(Index index, EditEventDescriptor editEventDescriptor) {
         requireNonNull(index);
         requireNonNull(editEventDescriptor);
@@ -51,20 +56,19 @@ public class UpdateEventCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code event} with the details of {@code eventToEdit}
+     * edited with {@code editEventDescriptor}.
      */
     private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
         assert eventToEdit != null;
-
         Title updatedTitle = editEventDescriptor.getTitle().orElse(eventToEdit.getTitle());
         Set<Person> personsInEvent = eventToEdit.getAttendees();
-        
+
         return new Event(updatedTitle, personsInEvent);
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException{
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Event> lastShownList = model.getFilteredEventList();
 
@@ -102,16 +106,17 @@ public class UpdateEventCommand extends Command {
                 && editEventDescriptor.equals(e.editEventDescriptor);
     }
 
-
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
+     * Stores the details to edit the event with. Each non-empty field value will
+     * replace the
      * corresponding field value of the person.
      */
+
     public static class EditEventDescriptor {
         private Title title;
-        
 
-        public EditEventDescriptor() {}
+        public EditEventDescriptor() {
+        }
 
         /**
          * Returns true if at least one field is edited.

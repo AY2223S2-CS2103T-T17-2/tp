@@ -1,4 +1,4 @@
-package seedu.sudohr.logic.commands.eventCommands;
+package seedu.sudohr.logic.commands.eventcommands;
 
 import static java.util.Objects.requireNonNull;
 
@@ -8,17 +8,21 @@ import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.events.Event;
 
+/**
+ * Adds a event to the sudohr book.
+ */
 public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "addEvent";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a event to the sudohr book. ";
+    public static final String MESSAGE_SUCCESS = "New event added: %1$s";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the sudohr book";
 
     private final Event eventToAdd;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a event to the sudohr book. ";
-    public static final String MESSAGE_SUCCESS = "New event added: %1$s";
-
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the sudohr book";
-
+    /**
+     * Creates an AddEventCommand to add the specified {@code event}
+     */
     public AddEventCommand(Event event) {
         requireNonNull(event);
         eventToAdd = event;

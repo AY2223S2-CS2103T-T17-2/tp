@@ -1,24 +1,37 @@
 package seedu.sudohr.model.events;
 
-import java.util.Iterator;
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.sudohr.model.person.exceptions.DuplicatePersonException;
 import seedu.sudohr.model.events.exceptions.DuplicateEventException;
 import seedu.sudohr.model.events.exceptions.EventNotFoundException;
+import seedu.sudohr.model.person.exceptions.DuplicatePersonException;
 
+/**
+ * A list of events that enforces uniqueness between its elements and does not allow nulls.
+ * A event is considered unique by comparing using {@code Event#isSameEvent(Event)}. As such,
+ * adding and updating of
+ * events uses Event#isSameEvent(Event) for equality so as to ensure that the event being added
+ * or updated is
+ * unique in terms of identity in the UniqueEventList. However, the removal of a event uses
+ * Event#equals(Object) so
+ * as to ensure that the person with exactly the same fields will be removed.
+ * Supports a minimal set of list operations.
+ *
+ * @see Person#isSamePerson(Person)
+ */
 public class UniqueEventList implements Iterable<Event> {
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();
     private final ObservableList<Event> internalUnmodifiableList = FXCollections
             .unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent event as the given argument.
      */
     public boolean contains(Event toCheck) {
         // requireNonNull(toCheck);
@@ -26,21 +39,21 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a event to the list.
+     * The event must not already exist in the list.
      */
     public void addEvent(Event toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            // throw new DuplicatePersonException();
+            throw new DuplicateEventException();
         }
         internalList.add(toAdd);
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the event {@code target} in the list with {@code editedEvent}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another
+     * The event identity of {@code editedPerson} must not be the same as another
      * existing person in the list.
      */
     public void setEvent(Event target, Event editedEvent) {

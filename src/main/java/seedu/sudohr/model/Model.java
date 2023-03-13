@@ -1,22 +1,24 @@
 package seedu.sudohr.model;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.model.department.Department;
-import seedu.sudohr.model.events.Event;
 import seedu.sudohr.model.department.DepartmentName;
+import seedu.sudohr.model.events.Event;
 import seedu.sudohr.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /** {@code Predicate} that always evaluate to true for employee */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true for events */
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENT = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -90,7 +92,7 @@ public interface Model {
     /**
      * Updates the filter of the filtered person list to filter by the given
      * {@code predicate}.
-     * 
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
@@ -100,7 +102,8 @@ public interface Model {
     public Department getDepartment(DepartmentName name);
 
     /**
-     * Returns true if a department with the same identity as {@code department} exists in the address book.
+     * Returns true if a department with the same identity as {@code department} exists in the address
+     * book.
      */
     public boolean hasDepartment(Department department);
 
@@ -113,7 +116,8 @@ public interface Model {
     /**
      * Replaces the given department {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in
+     * the address book.
      */
     void setDepartment(Department target, Department editedDepartment);
 
@@ -125,6 +129,7 @@ public interface Model {
 
     /**
      * Adds a given employee from a given department
+     *
      * @param p The employee to add
      * @param d The department to add the employee to
      */
@@ -132,6 +137,7 @@ public interface Model {
 
     /**
      * Removes a given employee from a given department
+     *
      * @param p The employee to remove
      * @param d The department to remove the employee fro
      */
@@ -142,32 +148,68 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered department list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredDepartmentList(Predicate<Department> predicate);
 
-    // event methods
+    //=========== Event-Level Operations ==========================================================================
 
-    Predicate<Event> PREDICATE_SHOW_ALL_EVENT = unused -> true;
-
+    /**
+     * Adds the given event.
+     * {@code event} must not already exist in the sudohr book.
+     */
     void addEvent(Event event);
 
-    boolean hasEvent(Event event);
-
-    ObservableList<Event> getEventList();
-
-    boolean hasEmployeeInEvent(Event eventToAdd, Person personToAdd);
-
-    void addEmployeeToEvent(Event eventToAdd, Person personToAdd);
-
-    ObservableList<Event> getFilteredEventList();
-
+    /**
+     * Deletes the given event.
+     * The event must exist in the sudohr book.
+     */
     void deleteEvent(Event eventToDelete);
 
+    /**
+     * Returns true if a event with the same identity as {@code event} exists in
+     * the sudohr book.
+     */
+    boolean hasEvent(Event event);
+
+    /**
+     * Replaces the given department {@code eventToEdit} in the list with {@code editedEvent}.
+     * {@code eventToEdit} must exist in the address book.
+     * The person identity of {@code editedEvent} must not be the same as another existing person in
+     * the address book.
+     */
+    void setEvent(Event eventToEdit, Event editedEvent);
+
+    /**
+     * Returns true if a given event{@code event} has the employee {@code employee} in
+     * the sudohr book.
+     */
+    boolean hasEmployeeInEvent(Event event, Person person);
+
+    /**
+     * Adds a employee {@code employee} to a given event{@code event} in
+     * the sudohr book.
+     */
+    void addEmployeeToEvent(Event eventToAdd, Person personToAdd);
+
+    /** Returns an unmodifiable view of the filtered event list */
+    ObservableList<Event> getFilteredEventList();
+
+    /** Returns an unmodifiable view of the full event list */
+    ObservableList<Event> getEventList();
+
+    /**
+     * Deletes a employee {@code employee} from a given event{@code event} in
+     * the sudohr book.
+     */
     void deleteEmployeeFromEvent(Event eventToDelete, Person personToDelete);
 
+    /**
+     * Updates the filter of the filtered event list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredEventList(Predicate<Event> predicateShowAllEvent);
-
-    void setEvent(Event eventToEdit, Event editedEvent);
 
 }

@@ -26,6 +26,10 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an DeleteCommand to delete employee at the specified
+     * {@code targetIndex}
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

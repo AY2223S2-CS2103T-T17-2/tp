@@ -140,7 +140,12 @@ public class ParserUtil {
         return tagSet;
     }
 
-
+    /**
+     * Parses a {@code String title} into a {@code Title}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code title} is invalid.
+     */
     public static Title parseEventTitle(String title) throws ParseException {
         requireNonNull(title);
         String trimmedTitle = title.trim();
@@ -150,6 +155,11 @@ public class ParserUtil {
         return new Title(trimmedTitle);
     }
 
+    /**
+     * Parses {@code eventIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
     public static Index parseEventIndex(String eventIndex) throws ParseException {
         String trimmedIndex = eventIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
@@ -158,8 +168,13 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code employeeIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
     public static Index parseEmployeeIndex(String employeeIndex) throws ParseException {
-    String trimmedIndex = employeeIndex.trim();
+        String trimmedIndex = employeeIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
