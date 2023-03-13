@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.events.Event;
+import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.person.Person;
 
 /**
@@ -95,6 +96,8 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     //=========== Department-Level Operations ==========================================================================
+
+    public Department getDepartment(DepartmentName name);
 
     /**
      * Returns true if a department with the same identity as {@code department} exists in the address book.

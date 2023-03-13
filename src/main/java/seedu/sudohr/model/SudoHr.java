@@ -7,6 +7,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.sudohr.model.department.Department;
+import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.department.UniqueDepartmentList;
 import seedu.sudohr.model.events.Event;
 import seedu.sudohr.model.events.UniqueEventList;
@@ -127,6 +128,15 @@ public class SudoHr implements ReadOnlySudoHr {
     public boolean hasDepartment(Department department) {
         requireNonNull(department);
         return departments.contains(department);
+    }
+
+    /**
+     * Returns the department with the given name.
+     * @param name The department name to find.
+     * @return The corresponding department.
+     */
+    public Department getDepartment(DepartmentName name) {
+        return departments.getDepartment(name);
     }
 
     /**
