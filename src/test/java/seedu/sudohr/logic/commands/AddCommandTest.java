@@ -252,6 +252,18 @@ public class AddCommandTest {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setEvent'");
         }
+
+        @Override
+        public void cascadeUpdateUserInEvents(Person personToEdit, Person editedPerson) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'cascadeUpdateUserInEvents'");
+        }
+
+        @Override
+        public void cascadeDeleteUserInEvents(Person personToDelete) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'cascadeDeleteUserInEvents'");
+        }
     }
 
     /**

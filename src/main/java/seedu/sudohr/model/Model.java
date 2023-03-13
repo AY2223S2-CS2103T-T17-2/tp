@@ -212,4 +212,15 @@ public interface Model {
      */
     void updateFilteredEventList(Predicate<Event> predicateShowAllEvent);
 
+    /**
+     * Update a person {@code person} with editedPerson {@code person} in all events
+     * in the sudohr book.
+     */
+    void cascadeUpdateUserInEvents(Person personToEdit, Person editedPerson);
+
+    /**
+     * Deletes a person {@code person} from all events
+     * in the sudohr book.
+     */
+    void cascadeDeleteUserInEvents(Person personToDelete);
 }

@@ -176,6 +176,18 @@ public class ModelManager implements Model {
         sudoHr.setEvent(eventToEdit, editedEvent);
     }
 
+    @Override
+    public void cascadeUpdateUserInEvents(Person personToEdit, Person editedPerson) {
+        requireAllNonNull(personToEdit, editedPerson);
+        sudoHr.cascadeUpdateUserInEvents(personToEdit, editedPerson);
+    }
+
+    @Override
+    public void cascadeDeleteUserInEvents(Person personToDelete) {
+        requireAllNonNull(personToDelete);
+        sudoHr.cascadeDeleteUserInEvents(personToDelete);
+    }
+
     // =========== Filtered Event List Accessors
     // =============================================================
 

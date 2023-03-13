@@ -260,6 +260,33 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
+     * Update a person {@code person} with editedPerson {@code person} in all events
+     * in the sudohr book.
+     */
+    public void cascadeUpdateUserInEvents(Person personToEdit, Person editedPerson) {
+        ObservableList<Event> eventList = this.getEventsList();
+        for (Event event : eventList) {
+            if (event.hasPerson(personToEdit)) {
+                event.deletePerson(personToEdit);
+                event.addPerson(editedPerson);
+            }
+        }
+    }
+
+    /**
+     * Deletes a person {@code person} from all events
+     * in the sudohr book.
+     */
+    public void cascadeDeleteUserInEvents(Person personToDelete) {
+        ObservableList<Event> eventList = this.getEventsList();
+        for (Event event : eventList) {
+            if (event.hasPerson(personToDelete)) {
+                event.deletePerson(personToDelete);
+            }
+        }
+    }
+
+    /**
      * return the list of all events in sudohr
      */
     @Override
@@ -298,5 +325,4 @@ public class SudoHr implements ReadOnlySudoHr {
     public int hashCode() {
         return persons.hashCode();
     }
-
 }
