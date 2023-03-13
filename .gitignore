@@ -24,4 +24,4 @@ docs/_site/
 
 #formatting files
 /eclipse-formatter.xml
-/.vscode
+.vscode/
