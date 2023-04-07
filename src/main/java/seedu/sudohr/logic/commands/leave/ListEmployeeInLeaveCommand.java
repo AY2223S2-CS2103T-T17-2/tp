@@ -48,6 +48,7 @@ public class ListEmployeeInLeaveCommand extends Command {
         LeaveContainsEmployeePredicate predicate = new LeaveContainsEmployeePredicate(employeesToList);
 
         model.updateFilteredEmployeeList(predicate);
+        model.updateFilteredLeaveList(l->l.equals(targetLeave));
         return new CommandResult(
                 String.format(Messages.MESSAGE_EMPLOYEES_LISTED_OVERVIEW, model.getFilteredEmployeeList().size()));
     }
