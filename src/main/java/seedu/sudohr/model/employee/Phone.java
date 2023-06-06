@@ -60,7 +60,7 @@ public class Phone {
     }
 
     // added this line for demo
-    public int someCode(){
+    public int someCode() {
         return 1;
     }
 
