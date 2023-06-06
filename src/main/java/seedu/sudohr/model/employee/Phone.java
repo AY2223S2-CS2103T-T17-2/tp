@@ -59,4 +59,9 @@ public class Phone {
         return value.hashCode();
     }
 
+    // added this line for demo
+    public int someCode(){
+        return 1;
+    }
+
 }
